@@ -158,10 +158,10 @@ def run_pipeline(
             "books": str(write_models(settings.books_path, ordered)),
             "errors": str(write_models(settings.errors_path, invalid)),
             "csv": str(write_csv(settings.csv_path, ordered)),
+            "report": str(settings.report_path),
         }
         write_json(settings.report_path, report.model_dump(mode="json"))
         write_json(settings.runs_dir / f"{run_id}.json", report.model_dump(mode="json"))
-        report.outputs["report"] = str(settings.report_path)
 
     log.info(
         "run.finished",
