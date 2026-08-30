@@ -16,7 +16,7 @@ from pathlib import Path
 from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-REPO_URL = "https://github.com/gamalieldashuaDataFi/flyrank-polit-scraper"
+REPO_URL = "https://github.com/Gamey001/flyrank-polit-scraper"
 
 # floor for the delay between two real requests, in seconds
 MIN_POLITE_DELAY_SECONDS = 0.5
