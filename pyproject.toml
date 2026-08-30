@@ -1,0 +1,16 @@
+[project]
+name = "polite-scraper"
+version = "1.0.0"
+description = "FlyRank W5/A9 - a polite scraping pipeline for books.toscrape.com with a FastAPI front end"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "C4", "SIM"]
