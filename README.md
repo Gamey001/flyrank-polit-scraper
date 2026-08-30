@@ -19,7 +19,7 @@ The pipeline is a plain Python library with two front ends: a **CLI** for one-sh
 ## Quick start (under 5 minutes)
 
 ```bash
-git clone https://github.com/gamalieldashuaDataFi/flyrank-polit-scraper.git
+git clone https://github.com/Gamey001/flyrank-polit-scraper.git
 cd flyrank-polit-scraper
 
 python3 -m venv .venv && source .venv/bin/activate   # Python 3.10+
@@ -109,7 +109,7 @@ consent, and personal data is out of scope entirely.
 
 | Rule | Where it lives | How it is enforced |
 | --- | --- | --- |
-| **Identify yourself** | `Settings.user_agent` | `FlyRankInternshipA9/1.0 (+https://github.com/gamalieldashuaDataFi/flyrank-polit-scraper)` — a name *and* a contact link, on every request. |
+| **Identify yourself** | `Settings.user_agent` | `FlyRankInternshipA9/1.0 (+https://github.com/Gamey001/flyrank-polit-scraper)` — a name *and* a contact link, on every request. |
 | **Time out** | `Settings.request_timeout_seconds` | 10 s. A request may never hang forever. |
 | **Go slowly** | `PoliteFetcher._wait_turn` | ≥ 500 ms between two *real* requests. The floor is a schema constraint (`ge=0.5`), so it cannot be configured away. Cache hits wait for nothing — they never leave the computer. |
 | **Check the status first** | `PoliteFetcher.fetch` | Only `200` is treated as HTML. Anything else is a failed fetch. |

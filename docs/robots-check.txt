@@ -1,5 +1,5 @@
-# checked_at: 2026-08-30T17:15:03+00:00
+# checked_at: 2026-08-30T18:11:35+00:00
 # url: https://books.toscrape.com/robots.txt
-# user-agent: FlyRankInternshipA9/1.0 (+https://github.com/gamalieldashuaDataFi/flyrank-polit-scraper)
+# user-agent: FlyRankInternshipA9/1.0 (+https://github.com/Gamey001/flyrank-polit-scraper)
 # status: 404 Not Found
 # result: no robots file found

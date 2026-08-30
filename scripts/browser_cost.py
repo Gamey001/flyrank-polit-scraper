@@ -23,7 +23,7 @@ from pathlib import Path
 import requests
 
 URL = "https://quotes.toscrape.com/js/"
-USER_AGENT = "FlyRankInternshipA9/1.0 (+https://github.com/gamalieldashuaDataFi/flyrank-polit-scraper)"
+USER_AGENT = "FlyRankInternshipA9/1.0 (+https://github.com/Gamey001/flyrank-polit-scraper)"
 OUTPUT = Path("docs/browser-cost.json")
 
 
