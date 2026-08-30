@@ -67,6 +67,7 @@ def run_pipeline(
     extra_urls: list[str] | None = None,
     write_outputs: bool = True,
     fetcher: PoliteFetcher | None = None,
+    run_id: str | None = None,
 ) -> PipelineResult:
     """Run the whole pipeline once and return what it produced.
 
@@ -76,10 +77,12 @@ def run_pipeline(
         extra_urls: URLs appended to the discovered ones -- used to prove that a
             deliberately broken page is skipped rather than fatal.
         write_outputs: write books.json / errors.json / run-report.json to disk.
+        run_id: reuse an id assigned by the caller (the API), so one run has one
+            id everywhere it is reported.
     """
     started_at = datetime.now(UTC)
     started_monotonic = time.monotonic()
-    run_id = uuid.uuid4().hex[:12]
+    run_id = run_id or uuid.uuid4().hex[:12]
     page_budget = pages or settings.max_catalogue_pages
 
     owns_fetcher = fetcher is None
