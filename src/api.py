@@ -23,9 +23,18 @@ from __future__ import annotations
 from contextlib import asynccontextmanager
 from typing import Annotated, Literal
 
-from fastapi import BackgroundTasks, Depends, FastAPI, HTTPException, Query, Request, Response, status
+from fastapi import (
+    BackgroundTasks,
+    Depends,
+    FastAPI,
+    HTTPException,
+    Query,
+    Request,
+    Response,
+    status,
+)
 from fastapi.responses import FileResponse
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 from .config import Settings, get_settings
 from .logging_setup import configure_logging
@@ -184,7 +193,9 @@ def list_books(
     if in_stock is not None:
         books = [b for b in books if b.in_stock is in_stock]
     books.sort(key=lambda b: getattr(b, sort), reverse=desc)
-    return BookPage(total=len(books), limit=limit, offset=offset, items=books[offset : offset + limit])
+    return BookPage(
+        total=len(books), limit=limit, offset=offset, items=books[offset : offset + limit]
+    )
 
 
 @app.get("/books.csv", tags=["books"], response_class=FileResponse)

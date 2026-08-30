@@ -13,9 +13,11 @@ import sys
 from typing import Any
 
 # anything not on a bare LogRecord was passed by the caller as extra=
-_STANDARD_ATTRS = set(
-    logging.LogRecord("", 0, "", 0, "", None, None).__dict__
-) | {"asctime", "message", "taskName"}
+_STANDARD_ATTRS = set(logging.LogRecord("", 0, "", 0, "", None, None).__dict__) | {
+    "asctime",
+    "message",
+    "taskName",
+}
 
 
 def _fields(record: logging.LogRecord) -> dict[str, Any]:

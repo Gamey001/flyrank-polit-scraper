@@ -52,7 +52,11 @@ def _validate(raw: RawBook) -> tuple[Book | None, InvalidRecord | None]:
             stage="validate",
             reason=f"{exc.error_count()} schema error(s)",
             errors=[
-                {"field": ".".join(str(p) for p in e["loc"]), "message": e["msg"], "type": e["type"]}
+                {
+                    "field": ".".join(str(p) for p in e["loc"]),
+                    "message": e["msg"],
+                    "type": e["type"],
+                }
                 for e in exc.errors()
             ],
             raw=raw.model_dump(mode="json"),
@@ -146,7 +150,9 @@ def run_pipeline(
         catalogue_pages=len(found.catalogue_pages),
         discovered=found.discovered,
         unique_urls=found.unique_urls,
-        detail_pages=len(ordered) + len(invalid) + sum(1 for f in failures if f.stage != "discovery"),
+        detail_pages=len(ordered)
+        + len(invalid)
+        + sum(1 for f in failures if f.stage != "discovery"),
         pages_fetched=stats.network_fetches,
         cache_hits=stats.cache_hits,
         retries=stats.retries,

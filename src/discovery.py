@@ -85,8 +85,12 @@ def discover_books(
             # a missing catalogue page ends the walk, not the run
             log.error("discovery.page_failed", extra={"url": page_url, "reason": exc.reason})
             result.failed_pages.append(
-                {"url": page_url, "stage": "discovery", "reason": exc.reason,
-                 "status_code": exc.status_code}
+                {
+                    "url": page_url,
+                    "stage": "discovery",
+                    "reason": exc.reason,
+                    "status_code": exc.status_code,
+                }
             )
             break
 

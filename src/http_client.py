@@ -110,9 +110,10 @@ class HtmlCache:
             fetched_at = datetime.fromisoformat(meta["fetched_at"])
         except (ValueError, KeyError, OSError):
             return None  # a corrupt entry is simply a cache miss
-        if self.ttl_hours is not None:
-            if datetime.now(UTC) - fetched_at > timedelta(hours=self.ttl_hours):
-                return None
+        if self.ttl_hours is not None and datetime.now(UTC) - fetched_at > timedelta(
+            hours=self.ttl_hours
+        ):
+            return None
         return FetchResult(
             url=url,
             status_code=int(meta.get("status_code", 200)),
@@ -223,11 +224,20 @@ class PoliteFetcher:
                     url, timeout=self.settings.request_timeout_seconds, allow_redirects=True
                 )
             except requests.Timeout as exc:
-                last_error = FetchError(url, f"timeout after {self.settings.request_timeout_seconds}s", attempts=attempt)
-                log.warning("fetch.timeout", extra={"url": url, "attempt": attempt, "error": str(exc)[:120]})
+                last_error = FetchError(
+                    url, f"timeout after {self.settings.request_timeout_seconds}s", attempts=attempt
+                )
+                log.warning(
+                    "fetch.timeout", extra={"url": url, "attempt": attempt, "error": str(exc)[:120]}
+                )
             except requests.RequestException as exc:
-                last_error = FetchError(url, f"connection error: {type(exc).__name__}", attempts=attempt)
-                log.warning("fetch.connection_error", extra={"url": url, "attempt": attempt, "error": type(exc).__name__})
+                last_error = FetchError(
+                    url, f"connection error: {type(exc).__name__}", attempts=attempt
+                )
+                log.warning(
+                    "fetch.connection_error",
+                    extra={"url": url, "attempt": attempt, "error": type(exc).__name__},
+                )
             else:
                 status = response.status_code
                 if status == 200:
@@ -237,15 +247,27 @@ class PoliteFetcher:
                     cache_path = self.cache.store(url, body, status, fetched_at)
                     log.info(
                         "FETCH",
-                        extra={"url": url, "status": status, "size_bytes": len(body), "attempt": attempt},
+                        extra={
+                            "url": url,
+                            "status": status,
+                            "size_bytes": len(body),
+                            "attempt": attempt,
+                        },
                     )
                     return FetchResult(url, status, body, fetched_at, False, cache_path)
 
-                last_error = FetchError(url, f"unexpected status {status}", status_code=status, attempts=attempt)
+                last_error = FetchError(
+                    url, f"unexpected status {status}", status_code=status, attempts=attempt
+                )
                 if status in TERMINAL_STATUSES or status not in RETRYABLE_STATUSES:
-                    log.warning("fetch.rejected", extra={"url": url, "status": status, "attempt": attempt})
+                    log.warning(
+                        "fetch.rejected", extra={"url": url, "status": status, "attempt": attempt}
+                    )
                     break  # a 404/403 is an answer: never ask again
-                log.warning("fetch.retryable_status", extra={"url": url, "status": status, "attempt": attempt})
+                log.warning(
+                    "fetch.retryable_status",
+                    extra={"url": url, "status": status, "attempt": attempt},
+                )
                 if attempt < self.settings.max_attempts:
                     time.sleep(self._backoff_seconds(attempt, response.headers.get("Retry-After")))
                     self.stats.retries += 1

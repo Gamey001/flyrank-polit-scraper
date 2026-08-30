@@ -1,6 +1,6 @@
 """Command-line entry point: one command runs the whole pipeline.
 
-    python -m src.main
+python -m src.main
 """
 
 from __future__ import annotations
@@ -17,7 +17,9 @@ BROKEN_URL_FOR_DRILL = "https://books.toscrape.com/catalogue/this-book-does-not-
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="polite-scraper", description=__doc__)
-    parser.add_argument("--pages", type=int, default=None, help="catalogue pages to walk (default 3)")
+    parser.add_argument(
+        "--pages", type=int, default=None, help="catalogue pages to walk (default 3)"
+    )
     parser.add_argument("--refresh", action="store_true", help="ignore the cache and refetch")
     parser.add_argument(
         "--inject-broken",
