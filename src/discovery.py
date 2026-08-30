@@ -58,6 +58,7 @@ class Discovery:
     book_urls: list[str] = field(default_factory=list)
     discovered: int = 0
     failed_pages: list[dict[str, object]] = field(default_factory=list)
+    source_page_by_url: dict[str, str] = field(default_factory=dict)
 
     @property
     def unique_urls(self) -> int:
@@ -96,6 +97,7 @@ def discover_books(
             if link not in seen:
                 seen.add(link)
                 result.book_urls.append(link)
+                result.source_page_by_url[link] = page_url
 
         log.info(
             "discovery.page",
