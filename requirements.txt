@@ -1,0 +1,19 @@
+# Versions below are the ones this project was run and tested against.
+# Pipeline
+requests==2.34.2
+beautifulsoup4==4.15.0
+lxml==6.1.2
+pydantic==2.13.5
+pydantic-settings==2.15.0
+
+# HTTP API
+fastapi==0.141.1
+uvicorn[standard]==0.52.4
+
+# Dev / tests
+pytest==9.1.1
+httpx==0.28.1
+ruff==0.16.5
+
+# Optional: only needed for scripts/browser_cost.py (the browser comparison)
+# playwright==1.62.0

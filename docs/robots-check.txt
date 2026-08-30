@@ -1,0 +1,5 @@
+# checked_at: 2026-08-30T17:15:03+00:00
+# url: https://books.toscrape.com/robots.txt
+# user-agent: FlyRankInternshipA9/1.0 (+https://github.com/gamalieldashuaDataFi/flyrank-polit-scraper)
+# status: 404 Not Found
+# result: no robots file found

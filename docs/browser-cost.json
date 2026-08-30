@@ -1,0 +1,19 @@
+{
+  "url": "https://quotes.toscrape.com/js/",
+  "measurements": [
+    {
+      "approach": "plain HTTP (requests + BeautifulSoup)",
+      "seconds": 0.914,
+      "peak_memory_mb": 31.8,
+      "bytes_downloaded": 5808,
+      "quotes_found": 0
+    },
+    {
+      "approach": "playwright (installed google chrome)",
+      "seconds": 6.209,
+      "peak_memory_mb": 40.8,
+      "bytes_downloaded": 8985,
+      "quotes_found": 10
+    }
+  ]
+}
