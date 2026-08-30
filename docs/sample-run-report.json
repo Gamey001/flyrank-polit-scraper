@@ -1,0 +1,24 @@
+{
+  "run_id": "d6ccc27b6f06",
+  "started_at": "2026-08-30T17:32:50.798026Z",
+  "finished_at": "2026-08-30T17:33:29.470373Z",
+  "duration_seconds": 38.673,
+  "target": "https://books.toscrape.com/",
+  "catalogue_pages": 3,
+  "discovered": 60,
+  "unique_urls": 60,
+  "detail_pages": 60,
+  "pages_fetched": 63,
+  "cache_hits": 0,
+  "retries": 0,
+  "valid_records": 60,
+  "invalid_records": 0,
+  "failed_pages": 0,
+  "failures": [],
+  "outputs": {
+    "books": "output/books.json",
+    "errors": "output/errors.json",
+    "csv": "output/books.csv",
+    "report": "output/run-report.json"
+  }
+}
